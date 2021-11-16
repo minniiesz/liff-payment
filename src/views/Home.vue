@@ -109,28 +109,28 @@ created() {
         alert('Error getting profile: ' + error)
       })
     },
-    async chargeOmise(token){
-        let base64 = require('base-64');
-        let url = "https://api.omise.co/charges" ;
-        let username = "skey_test_5ou38wt4x2oeuu5cl2h"; //skey omise
-        let password = '';
+    // async chargeOmise(token){
+    //     let base64 = require('base-64');
+    //     let url = "https://api.omise.co/charges" ;
+    //     let username = "skey_test_5ou38wt4x2oeuu5cl2h"; //skey omise
+    //     let password = '';
 
-      let response = await fetch(url,{
-              method:'POST',
-              headers : {
-                'Content-Type' : 'application/json',
-                'Autorization' : 'Basic' + base64.encode(username+":"+password),
-              },
-              body:JSON.stringify({
-                    description : "test",
-                    amount : this.carts.totalPrice,
-                    currency : 'thb',
-                    return_uri : 'www.google.com',
-                    card : token,
-              })       
-            })
-            return response.json()
-    },
+    //   let response = await fetch(url,{
+    //           method:'POST',
+    //           headers : {
+    //             'Content-Type' : 'application/json',
+    //             'Autorization' : 'Basic' + base64.encode(username+":"+password),
+    //           },
+    //           body:JSON.stringify({
+    //                 description : "test",
+    //                 amount : this.carts.totalPrice,
+    //                 currency : 'thb',
+    //                 return_uri : 'www.google.com',
+    //                 card : token,
+    //           })       
+    //         })
+    //         return response.json()
+    // },
     chargeOmi(token){
       var omise = require('omise')({
           'publicKey': "pkey_test_5ou38wt4nuuigbj90tg",
