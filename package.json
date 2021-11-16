@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "vue-cli-service start",
+    "start": "node server.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
   "dependencies": {
     "base-64": "^1.0.0",
     "core-js": "^3.6.5",
+    "express": "^4.17.1",
     "firebase": "^9.3.0",
     "omise": "^0.8.5",
     "vue": "^2.6.11",
@@ -22,10 +23,5 @@
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "vue-template-compiler": "^2.6.11"
-  },
-  "engines": {
-    "node": "16.13.0",
-    "npm": "8.1.3"
   }
 }
-
