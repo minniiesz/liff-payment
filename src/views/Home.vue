@@ -164,12 +164,8 @@ created() {
       image: "https://cdn.omise.co/assets/dashboard/images/omise-logo.png",
       currency: "THB",
       onCreateTokenSuccess: token => {
-      err,res = this.chargeOmi(token)
-      if(err!=null){
-        console.log(err);
-      }else{
-        console.log(res);
-      }
+      this.chargeOmi(token)
+
     
 
 
