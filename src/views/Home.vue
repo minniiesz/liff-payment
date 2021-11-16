@@ -12,11 +12,7 @@
     <div  class="center">
       <button  id="pay" type="button" disabled @click.prevent="checkout()"><h1>Pay</h1></button>
      
-    <form action="checkout.php" id="my-custom-checkout-form" method="POST">
-      <input type="hidden" :value="carts.totalPrice" name="total">
-      <input type="hidden" value="" name="omiseToken">  
 
-    </form>
     </div>
     </div>
   </div>
@@ -26,6 +22,11 @@
 // @ is an alias to /src
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs, doc } from 'firebase/firestore/lite';
+var omise = require('omise')({
+  'secretKey': 'skey_test_...',
+  'omiseVersion': '2015-09-10'
+});
+
 
   const firebaseConfig = {
     apiKey: "AIzaSyDRsmN8La18FGtYyMWEYoBhX1Tje-sA-Jk",
@@ -116,12 +117,26 @@ created() {
       image: "https://cdn.omise.co/assets/dashboard/images/omise-logo.png",
       currency: "THB",
       onCreateTokenSuccess: token => {
-        const form = document.querySelector("#my-custom-checkout-form")
-        form.omiseToken.value = token;
-        form.submit()
+        omise.charges.create({
+    'description': 'Charge for order ID: 888',
+    'amount': this.carts.totalPrice*100, // 1,000 Baht
+     'currency': 'thb',
+     'capture': false,
+     'card': token
+}, function(err, resp) {
+  if (resp.paid) {
+    //Success
+    console.log("success")
+  } else {
+    //Handle failure
+    console.log(err)
+    throw resp.failure_code;
+  }
+});
       }
     })
     OmiseCard.attach()
+
   }
 }
 
