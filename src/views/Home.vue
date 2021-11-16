@@ -116,6 +116,7 @@ created() {
       image: "https://cdn.omise.co/assets/dashboard/images/omise-logo.png",
       currency: "THB",
       onCreateTokenSuccess: token => {
+      
         let base64 = require('base-64');
         let url = "https://api.omise.co/charges" ;
         let username = "skey_test_5ou38wt4x2oeuu5cl2h"; //skey omise
