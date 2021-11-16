@@ -127,7 +127,7 @@ created() {
               headers : headers,
               body:JSON.stringify({
                     description : "test",
-                    amount : carts.totalPrice,
+                    amount : this.carts.totalPrice,
                     currency : 'thb',
                     return_uri : 'www.google.com',
                     card : token,
