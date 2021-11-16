@@ -119,6 +119,8 @@ created() {
               headers : {
                 'Content-Type' : 'application/json',
                 'Autorization' : 'Basic' + base64.encode(username+":"+password),
+                'Access-Control-Allow-Origin': 'https://sleepy-caverns-62184.herokuapp.com/',
+                'Access-Control-Allow-Credentials': true
               },
               body:JSON.stringify({
                     description : "test",
