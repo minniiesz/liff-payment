@@ -1,0 +1,15 @@
+diff --git a/node_modules/omise/lib/apiResources.js b/node_modules/omise/lib/apiResources.js
+index bc3c491..5c1c9ad 100644
+--- a/node_modules/omise/lib/apiResources.js
++++ b/node_modules/omise/lib/apiResources.js
+@@ -3,9 +3,7 @@ var api = require('./api');
+ var _ = require('lodash');
+ var omiseConfig;
+ 
+-function resourceName(name) {
+-  return require(['./resources/', name].join(''))(omiseConfig);
+-}
++function resourceName(name) { return require('./resources/'+name)(omiseConfig); }
+ 
+ function resourcePath(name) {
+   var path = name;

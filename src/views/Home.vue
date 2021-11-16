@@ -23,7 +23,7 @@
 </template>
 
 <script>
-'use strict' ;
+
 // @ is an alias to /src
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs, doc } from 'firebase/firestore/lite';
