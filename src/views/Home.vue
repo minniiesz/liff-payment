@@ -129,7 +129,31 @@ created() {
               })       
             })
             return response.json()
+    },
+    chargeOmi(token){
+      var omise = require('omise')({
+          'secretKey': 'skey_test_5ou38wt4x2oeuu5cl2h',
+          'omiseVersion': '2015-09-10'
+      });
+      omise.charges.create({
+         'description': 'Charge for order ID: 888',
+         'amount': this.carts.totalPrice, 
+         'currency': 'thb',
+         'capture': false,
+         'card': token
+}, function(err, resp) {
+  if (resp.paid) {
+    //Success
+    console.log('success .... ');
+  } else {
+    //Handle failure
+    console.log('fail.....');
+    throw resp.failure_code;
+  }
+  return err,resp
+});
     }
+
 
 
 },
@@ -140,10 +164,13 @@ created() {
       image: "https://cdn.omise.co/assets/dashboard/images/omise-logo.png",
       currency: "THB",
       onCreateTokenSuccess: token => {
-      this.chargeOmise(token)
-      .then(data => {
-        console.log(data)
-      })
+      err,res = this.chargeOmi(token)
+      if(err!=null){
+        console.log(err);
+      }else{
+        console.log(res);
+      }
+    
 
 
       }
