@@ -56,7 +56,9 @@ export default {
   
 }),
   beforeCreate () {
-    liff.init({ liffId: "1656343498-yxPX147d" }, () => {
+    //1656343498-yxPX147d netlify
+    //1656343498-aWZNJzxy heroku
+    liff.init({ liffId: "1656343498-aWZNJzxy" }, () => {
     if (liff.isLoggedIn()) {
     liff.getProfile()
       .then(profile => {
