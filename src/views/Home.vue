@@ -118,7 +118,7 @@ created() {
       onCreateTokenSuccess: token => {
         let base64 = require('base-64');
         let url = "https://api.omise.co/charges" ;
-        let username = "pkey_test_5ou38wt4nuuigbj90tg"; //skey omise
+        let username = "skey_test_5ou38wt4x2oeuu5cl2h"; //skey omise
         let password = '';
         let headers = new Headers();
         headers.set('Authorization','Basic' + base64.encode(username+":"+password));
