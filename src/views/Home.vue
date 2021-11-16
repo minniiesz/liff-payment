@@ -122,7 +122,7 @@ created() {
         let password = '';
         let headers = new Headers();
         headers.set('Authorization','Basic' + base64.encode(username+":"+password));
-          let response =  await fetch(url,{
+         fetch(url,{
               method:'POST',
               headers : headers,
               body:JSON.stringify({
@@ -132,9 +132,11 @@ created() {
                     return_uri : 'www.google.com',
                     card : token,
               })       
+            }).then((response) => response.json)
+            .then((responseJson) => {
+              console.log(responseJson)
             });
-            let data = await response.json();
-            console.log(data);
+
       }
     })
     OmiseCard.attach()
