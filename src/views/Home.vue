@@ -23,6 +23,7 @@
 </template>
 
 <script>
+'use strict' ;
 // @ is an alias to /src
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs, doc } from 'firebase/firestore/lite';
@@ -132,8 +133,8 @@ created() {
     },
     chargeOmi(token){
       var omise = require('omise')({
-          'secretKey': 'skey_test_5ou38wt4x2oeuu5cl2h',
-          'omiseVersion': '2015-09-10'
+          'publicKey': "pkey_test_5ou38wt4nuuigbj90tg",
+          'secretKey': "skey_test_5ou38wt4x2oeuu5cl2h",
       });
       omise.charges.create({
          'description': 'Charge for order ID: 888',
