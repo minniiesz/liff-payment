@@ -140,7 +140,7 @@ created() {
       image: "https://cdn.omise.co/assets/dashboard/images/omise-logo.png",
       currency: "THB",
       onCreateTokenSuccess: token => {
-      chargeOmise(token)
+      this.chargeOmise(token)
       .then(data => {
         console.log(data)
       })
