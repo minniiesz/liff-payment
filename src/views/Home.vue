@@ -12,7 +12,11 @@
     <div  class="center">
       <button  id="pay" type="button" disabled @click.prevent="checkout()"><h1>Pay</h1></button>
      
-
+    <!-- <form  id="form" method="POST">
+      <input type="hidden" id="pkey">
+      <input type="hidden" id="desc">
+      <input type="hidden" id="amount">
+    </form> -->
     </div>
     </div>
   </div>
@@ -22,8 +26,6 @@
 // @ is an alias to /src
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs, doc } from 'firebase/firestore/lite';
-
-
 
   const firebaseConfig = {
     apiKey: "AIzaSyDRsmN8La18FGtYyMWEYoBhX1Tje-sA-Jk",
@@ -80,7 +82,7 @@ export default {
   console.log('error', err);
 });
     } else {
-   liff.login();
+    liff.login();
     }
   });
   },
@@ -114,31 +116,28 @@ created() {
       image: "https://cdn.omise.co/assets/dashboard/images/omise-logo.png",
       currency: "THB",
       onCreateTokenSuccess: token => {
-        console.log(token);
-        var omise = require('omise')({
-  'secretKey': 'skey_test_5ou38wt4x2oeuu5cl2h',
-  'omiseVersion': '2015-09-10'
-});
-omise.charges.create({
-  'description': 'Charge for order ID: 888',
-  'amount': '100000', // 1,000 Baht
-  'currency': 'thb',
-  'capture': false,
-  'card': token
-}, function(err, resp) {
-  if (resp.paid) {
-    //Success
-    console.log(success)
-  } else {
-    //Handle failure
-    console.log(resp.failure_code)
-    throw resp.failure_code;
-  }
-});
+        let base64 = require('base-64');
+        let url = "https://api.omise.co/charges" ;
+        let username = "pkey_test_5ou38wt4nuuigbj90tg"; //skey omise
+        let password = '';
+        let headers = new Headers();
+        headers.set('Authorization','Basic' + base64.encode(username+":"+password));
+            fetch(url,{
+              method:'POST',
+              headers : headers,
+              body:JSON.stringify({
+                    description : "test",
+                    amount : carts.totalPrice,
+                    currency : 'thb',
+                    return_uri : 'www.google.com',
+                    card : token,
+              })
+              .then(response => response.json())
+              .then(json => console.log(json))
+            })
       }
     })
     OmiseCard.attach()
-
   }
 }
 
