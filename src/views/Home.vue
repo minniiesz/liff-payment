@@ -134,7 +134,7 @@ created() {
       currency: "THB",
       onCreateTokenSuccess: token => {
         try {
-          this.createCreditCardCharge(this.profile.displayName,this.products.totalPrice,token);
+          this.createCreditCardCharge(this.profile.displayName,this.carts.totalPrice,token);
         } catch (error) {
           console.log(error);
         }
