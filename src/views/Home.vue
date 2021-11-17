@@ -137,11 +137,9 @@ created() {
           'secretKey': "skey_test_5ou38wt4x2oeuu5cl2h",
       });
       omise.charges.create({
-         'description': 'Charge for order ID: 888',
          'amount': this.carts.totalPrice, 
          'currency': 'thb',
-         'capture': false,
-         'card': token
+         'card': token.toString()
 }, function(err, resp) {
   if (resp.paid) {
     //Success
