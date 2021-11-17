@@ -27,7 +27,7 @@
 // @ is an alias to /src
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs, doc } from 'firebase/firestore/lite';
-
+import axios from 'axios';
   const firebaseConfig = {
     apiKey: "AIzaSyDRsmN8La18FGtYyMWEYoBhX1Tje-sA-Jk",
     authDomain: "getnamefirestore-pn9d.firebaseapp.com",
@@ -109,50 +109,19 @@ created() {
         alert('Error getting profile: ' + error)
       })
     },
-    // async chargeOmise(token){
-    //     let base64 = require('base-64');
-    //     let url = "https://api.omise.co/charges" ;
-    //     let username = "skey_test_5ou38wt4x2oeuu5cl2h"; //skey omise
-    //     let password = '';
-
-    //   let response = await fetch(url,{
-    //           method:'POST',
-    //           headers : {
-    //             'Content-Type' : 'application/json',
-    //             'Autorization' : 'Basic' + base64.encode(username+":"+password),
-    //           },
-    //           body:JSON.stringify({
-    //                 description : "test",
-    //                 amount : this.carts.totalPrice,
-    //                 currency : 'thb',
-    //                 return_uri : 'www.google.com',
-    //                 card : token,
-    //           })       
-    //         })
-    //         return response.json()
-    // },
-    chargeOmi(token){
-      var omise = require('omise')({
-          'publicKey': "pkey_test_5ou38wt4nuuigbj90tg",
-          'secretKey': "skey_test_5ou38wt4x2oeuu5cl2h",
-      });
-      omise.charges.create({
-         'amount': this.carts.totalPrice, 
-         'currency': 'thb',
-         'card': token.toString()
-}, function(err, resp) {
-  if (resp.paid) {
-    //Success
-    console.log('success .... ');
-  } else {
-    //Handle failure
-    console.log('fail.....');
-    throw resp.failure_code;
-  }
-  return err,resp
+    createCreditCardCharge = async (customerName, amount,token) =>{
+        await axios({
+          method: 'post',
+          url: 'http://localhost:80/checkout-credit-card',
+          data: {
+            customerName,
+            amount,
+            token, 
+           }
 });
     }
-
+    
+    
 
 
 },
@@ -163,8 +132,7 @@ created() {
       image: "https://cdn.omise.co/assets/dashboard/images/omise-logo.png",
       currency: "THB",
       onCreateTokenSuccess: token => {
-        console.log(token);
-      this.chargeOmi(token)
+        createCreditCardCharge(this.profile.displayName,this.products.totalPrice,token)
       }
     })
     OmiseCard.attach()

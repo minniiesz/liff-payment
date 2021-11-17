@@ -9,6 +9,7 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "base-64": "^1.0.0",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
