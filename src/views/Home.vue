@@ -109,7 +109,7 @@ created() {
         alert('Error getting profile: ' + error)
       })
     },
-    createCreditCardCharge = async (customerName, amount,token) =>{
+    async createCreditCardCharge(customerName,amount,token) {
         await axios({
           method: 'post',
           url: 'http://localhost:80/checkout-credit-card',
@@ -118,7 +118,7 @@ created() {
             amount,
             token, 
            }
-});
+        });
     }
     
     
@@ -132,7 +132,12 @@ created() {
       image: "https://cdn.omise.co/assets/dashboard/images/omise-logo.png",
       currency: "THB",
       onCreateTokenSuccess: token => {
-        createCreditCardCharge(this.profile.displayName,this.products.totalPrice,token)
+        try {
+          createCreditCardCharge(this.profile.displayName,this.products.totalPrice,token);
+        } catch (error) {
+          console.log(error);
+        }
+        
       }
     })
     OmiseCard.attach()
