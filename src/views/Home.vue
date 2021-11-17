@@ -45,6 +45,7 @@ import axios from 'axios';
   const cartsSnapshot = await getDocs(cartsCol);
   const cartsList = cartsSnapshot.docs.map(doc => doc.data());
 
+
   return cartsList;
 }
 
@@ -90,7 +91,7 @@ export default {
   });
   },
 created() {  
-
+ 
 
 },
   methods: {
@@ -133,7 +134,7 @@ created() {
       currency: "THB",
       onCreateTokenSuccess: token => {
         try {
-          createCreditCardCharge(this.profile.displayName,this.products.totalPrice,token);
+          this.createCreditCardCharge(this.profile.displayName,this.products.totalPrice,token);
         } catch (error) {
           console.log(error);
         }
