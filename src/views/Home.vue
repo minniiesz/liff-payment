@@ -163,11 +163,8 @@ created() {
       image: "https://cdn.omise.co/assets/dashboard/images/omise-logo.png",
       currency: "THB",
       onCreateTokenSuccess: token => {
+        console.log(token);
       this.chargeOmi(token)
-
-    
-
-
       }
     })
     OmiseCard.attach()
