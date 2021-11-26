@@ -1,22 +1,16 @@
 <template>
   <div class="home">
-    <div><h1>UserId : {{profile.userId}}</h1></div>
+    <div style="font-size:500%;font-family: Arial">UserId : {{profile.userId}}</div>
     <br><br>
     <div>
      <!-- <button @click="getProfile()"><h1>Get UserId</h1></button> -->
         <div v-for="product in carts.products" v-bind:key="product"> 
-          <h2>name: {{product.title}} quantity: {{product.quantity}} price: {{product.quantity*product.price}}</h2>
-        </div>   
+          <div style="font-size:300%;font-family: Arial" >name: {{product.title}} quantity: {{product.quantity}} price: {{product.quantity*product.price}}</div>
+        </div>
       </div>
     <div >
     <div  class="center">
-      <button  id="pay" type="button" disabled @click.prevent="checkout()"><h1>Pay</h1></button>
-     
-    <!-- <form  id="form" method="POST">
-      <input type="hidden" id="pkey">
-      <input type="hidden" id="desc">
-      <input type="hidden" id="amount">
-    </form> -->
+      <button  id="pay" type="button" style="height:50%;width:30%" disabled @click.prevent="checkout()"><h1>Pay</h1></button>
     </div>
     </div>
   </div>
