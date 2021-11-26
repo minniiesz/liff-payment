@@ -1,11 +1,11 @@
 <template>
   <div class="home">
-    <div style="font-size:300%;font-family: Arial">UserId : {{profile.userId}}</div>
+    <div style="font-size:400%;font-family: Arial">{{profile.userId}}</div>
     <br><br>
     <div>
      <!-- <button @click="getProfile()"><h1>Get UserId</h1></button> -->
         <div v-for="product in carts.products" v-bind:key="product"> 
-          <div style="font-size:200%;font-family: Arial" >name: {{product.title}} quantity: {{product.quantity}} price: {{product.quantity*product.price}}</div>
+          <div style="font-size:300%;font-family: Arial" >name: {{product.title}} quantity: {{product.quantity}} price: {{product.quantity*product.price}}</div>
         </div>
       </div>
     <div >
